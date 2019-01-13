@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     myTalon = new TalonSRX(1);
     myTalon.set(ControlMode.PercentOutput, 0);
-    
+    System.out.println(" kick off the master!");
   }
 
   /**
