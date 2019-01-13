@@ -11,9 +11,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -26,7 +23,7 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  private TalonSRX myTalon;
+  private Drive myDrive;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -36,9 +33,7 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    myTalon = new TalonSRX(1);
-    myTalon.set(ControlMode.PercentOutput, 0);
-    
+    myDrive = new Drive();
   }
 
   /**
@@ -92,7 +87,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+     myDrive.teleopPeriodic();
   }
+  
 
   /**
    * This function is called periodically during test mode.
